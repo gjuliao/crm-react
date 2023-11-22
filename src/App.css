@@ -1,0 +1,19 @@
+.container {
+  margin: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 80%;
+}
+
+.group-card {
+  flex: 1;
+  margin: 1%;
+  background-color: blue;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.items {
+  display: flex;
+  justify-content: space-around;
+}
