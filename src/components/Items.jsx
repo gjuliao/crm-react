@@ -1,11 +1,15 @@
 import React from 'react'
+import { GrNext } from "react-icons/gr";
+import { GrPrevious } from "react-icons/gr";
+
+
 
 export const Items = ({ item}) => {
   return (
     <div className='items'>
-        <p>Left</p>
+        <GrPrevious className='icon' />
         <p>{item}</p>
-        <p>Right</p>
+        <GrNext className='icon'/>
     </div>
   )
 }
