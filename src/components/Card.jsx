@@ -14,7 +14,7 @@ export const Card = ({ owner, tasks, addTask, index }) => {
           </li>
         ))}
         </ul>
-        <TaskInput index={index} addTask={addTask} />
+        <TaskInput index={index} owner={owner} addTask={addTask} />
     </div>
   )
 }

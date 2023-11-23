@@ -1,9 +1,10 @@
 import React from 'react'
 
-export const TaskInput = ({ addTask, index }) => {
+export const TaskInput = ({ addTask, index, owner }) => {
 
-    const handleInputValue = () => {
-        const userInput = window.prompt('Type your new task here:');
+    const handleInputValue = (event) => {
+        event.preventDefault();
+        const userInput = window.prompt(`Type new task for ${owner}:`);
         if (userInput){
             addTask(index, userInput);
         }
