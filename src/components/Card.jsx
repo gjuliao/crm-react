@@ -2,12 +2,8 @@ import React from 'react'
 import { Items } from './Items'
 import { TaskInput } from './TaskInput';
 
-export const Card = ({ items, onItemClick }) => {
+export const Card = ({ owner, tasks, addTask, index }) => {
 
-    const tasks = items.tasks;
-    const owner = items.owner;
-
-    console.log(items, 'Card');
   return (
     <div className='group-card'>
         <h2 className='card-title'>{owner}</h2>
@@ -18,7 +14,7 @@ export const Card = ({ items, onItemClick }) => {
           </li>
         ))}
         </ul>
-        <TaskInput />
+        <TaskInput index={index} addTask={addTask} />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Items = ({item}) => {
+export const Items = ({ item}) => {
   return (
     <div className='items'>
         <p>Left</p>
