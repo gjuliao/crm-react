@@ -38,12 +38,39 @@ function App() {
     });
   };
 
+  const changeTaskPosition = (listIndex, taskIndex, direction) => {
+    console.log(listIndex, taskIndex, direction, 'from app');
+    setLists((prevLists) => {
+      const updatedLists = [...prevLists];
+  
+      const currentList = updatedLists[listIndex];
+      const targetListIndex = direction === 'next' ? listIndex + 1 : listIndex - 1;
+  
+      if (
+        targetListIndex >= 0 &&
+        targetListIndex < updatedLists.length &&
+        taskIndex < currentList.tasks.length
+      ) {
+        const currentTask = currentList.tasks[taskIndex];
+  
+        // Remove the task from the current list
+        currentList.tasks.splice(taskIndex, 1);
+  
+        // Insert the task into the target list at the same position
+        updatedLists[targetListIndex].tasks.splice(taskIndex, 0, currentTask);
+      }
+  
+      return updatedLists;
+    });
+  };
+  
+
 
   console.log(lists, 'in app');
   return (
     <div className="container">
       {lists.map((list) => (
-        <Card key={list.index} index={list.index} owner={list.owner} tasks={list.tasks} addTask={addTask} />
+        <Card key={list.index} listIndex={list.index} owner={list.owner} tasks={list.tasks} addTask={addTask} changeTaskPosition={changeTaskPosition} />
       ))}
     </div>
   );
