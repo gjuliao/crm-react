@@ -1,5 +1,6 @@
 import React from 'react'
 import { Items } from './Items'
+import { TaskInput } from './TaskInput';
 
 export const Card = ({ items, onItemClick }) => {
 
@@ -10,12 +11,14 @@ export const Card = ({ items, onItemClick }) => {
   return (
     <div className='group-card'>
         <h2 className='card-title'>{owner}</h2>
-        <div>
+        <ul className='list-items'>
         {tasks.map((item, index) => (
-            <Items key={index} item={item} />
+          <li key={index}>
+            <Items item={item} />
+          </li>
         ))}
-        </div>
-        <button>submit</button>
+        </ul>
+        <TaskInput />
     </div>
   )
 }
