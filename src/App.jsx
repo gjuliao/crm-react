@@ -39,33 +39,49 @@ function App() {
   };
 
   const changeTaskPosition = (listIndex, taskIndex, direction) => {
-    console.log(listIndex, taskIndex, direction, 'from app');
     setLists((lists) => {
       const updatedLists = [...lists];
   
       const currentList = updatedLists[listIndex];
-      
       const targetListIndex = direction === 'next' ? listIndex + 1 : listIndex - 1;
-
   
       if (
         targetListIndex >= 0 &&
         targetListIndex < updatedLists.length &&
+        taskIndex >= 0 &&
         taskIndex < currentList.tasks.length
       ) {
-        
         const currentTask = currentList.tasks[taskIndex];
   
-        // Remove the task from the current list
-        currentList.tasks.splice(taskIndex, 1);
+        // Create new arrays to avoid unintended changes
+        const currentListTasks = [...currentList.tasks];
+        const targetListTasks = [...updatedLists[targetListIndex].tasks];
   
-        // Insert the task into the target list at the same position
-        updatedLists[targetListIndex].tasks.splice(taskIndex, 0, currentTask);
+        // Remove the task from the current list
+        currentListTasks.splice(taskIndex, 1);
+  
+        // Calculate the correct insertIndex based on the direction
+        const insertIndex = taskIndex;
+  
+        // Insert the task into the target list at the correct position
+        targetListTasks.splice(insertIndex, 0, currentTask);
+  
+        // Update the lists with the new arrays
+        updatedLists[listIndex] = {
+          ...currentList,
+          tasks: currentListTasks,
+        };
+  
+        updatedLists[targetListIndex] = {
+          ...updatedLists[targetListIndex],
+          tasks: targetListTasks,
+        };
       }
   
       return updatedLists;
     });
   };
+  
   
   return (
     <div className="container">
