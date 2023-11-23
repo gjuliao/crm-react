@@ -40,17 +40,20 @@ function App() {
 
   const changeTaskPosition = (listIndex, taskIndex, direction) => {
     console.log(listIndex, taskIndex, direction, 'from app');
-    setLists((prevLists) => {
-      const updatedLists = [...prevLists];
+    setLists((lists) => {
+      const updatedLists = [...lists];
   
       const currentList = updatedLists[listIndex];
+      
       const targetListIndex = direction === 'next' ? listIndex + 1 : listIndex - 1;
+
   
       if (
         targetListIndex >= 0 &&
         targetListIndex < updatedLists.length &&
         taskIndex < currentList.tasks.length
       ) {
+        
         const currentTask = currentList.tasks[taskIndex];
   
         // Remove the task from the current list
@@ -64,9 +67,6 @@ function App() {
     });
   };
   
-
-
-  console.log(lists, 'in app');
   return (
     <div className="container">
       {lists.map((list) => (
