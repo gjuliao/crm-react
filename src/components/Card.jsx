@@ -6,7 +6,9 @@ export const Card = ({ owner, tasks, addTask, listIndex, changeTaskPosition }) =
 
   return (
     <div className='group-card'>
-        <h2 className='card-title'>{owner}</h2>
+        <div className={`item-${listIndex}`}>
+          <h2 className='card-title'>{owner}</h2>
+        </div>
         <ul className='list-items'>
         {tasks.map((item, taskIndex) => (
           <li key={taskIndex}>
